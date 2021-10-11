@@ -1,20 +1,36 @@
 package se.lexicon;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void arrayToStringReturnExpectedResult(){
+        //Arrange - setting up the test
+        String[] testData = {"Erik Svensson", "Fabrice Badia"};
+        String expected = "[Erik Svensson, Fabrice Badia]";
+
+        //Act - performing the test
+        String actual = App.arrayToString(testData);
+
+        //Assert - evaluating result
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testAddToStringArray() {
+        String[] testArrayData = {};
+        String string = "Say hello to the cute baby";
+        String[] expected = {"Say hello to the cute baby"};
+
+        String[] actual = App.addToStringArray(testArrayData, string);
+
+        assertArrayEquals(actual, expected);
     }
 }
