@@ -2,6 +2,8 @@ package se.lexicon;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -32,5 +34,17 @@ public class AppTest
         String[] actual = App.addToStringArray(testArrayData, string);
 
         assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    public void findTask(){
+        String[] data = {"Basel", "Karmand", "Erik", "Fabrice"};
+        String task = "Fabrice";
+        String expected = "Fabrice";
+
+        String actual = App.findTask(task, data);
+        System.out.println(Arrays.toString(data));
+
+        assertEquals(expected, actual);
     }
 }

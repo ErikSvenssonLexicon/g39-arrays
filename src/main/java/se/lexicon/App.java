@@ -1,5 +1,6 @@
 package se.lexicon;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,6 +11,11 @@ public class App
 {
     public static void main( String[] args )
     {
+
+
+    }
+
+    public static void arrayConcatExample(){
         String[] source = {"Foo", "Bar", "Baz"};
         String[] toAdd = {"Boo", "Baa"};
 
@@ -46,10 +52,7 @@ public class App
     }
 
     public static String[] addToStringArray(final String[] source, String...strings){
-         String[] newArray = new String[source.length + strings.length];
-        for(int i=0; i<source.length; i++){
-            newArray[i] = source[i];
-        }
+         String[] newArray = Arrays.copyOf(source, source.length + strings.length);
         for(int iWrite = source.length, iRead = 0; iRead<strings.length; iWrite++, iRead++){
             newArray[iWrite] = strings[iRead];
         }
@@ -57,16 +60,25 @@ public class App
     }
 
     public static String[] addToStringArray(final String[] source,final String string){
-        String[] newArray = new String[source.length + 1];
-
+        String[] newArray = Arrays.copyOf(source, source.length + 1);
         newArray[newArray.length -1] = string;
         return newArray;
     }
 
     public static String findTask(String task, String[] array){
-        for(String string: array){
-            if(string.equalsIgnoreCase(task)){
-                return string;
+        String[] temp = Arrays.copyOf(array, array.length);
+        Arrays.sort(temp);
+        int index = Arrays.binarySearch(temp, task);
+        if(index < 0){
+            return null;
+        }
+        return temp[index];
+    }
+
+    public static String preferredFindTask(String task, String[] array){
+        for(String string : array){
+            if(task.equals(string)){
+                return task;
             }
         }
         return null;
